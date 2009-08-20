@@ -1,0 +1,67 @@
+%define 	module	burn
+Summary:	simple and quick way to burn CDs or DVDs
+Summary(pl.UTF-8):	prosty skrypt umożliwiający wypalanie CD/DVD
+Name:		python-%{module}
+Version:	0.4.4
+Release:	0.1
+License:	GPL v2
+Group:		Development/Languages/Python
+Source0:	http://www.bigpaul.org/burn/download/%{module}-%{version}.tar.gz
+# Source0-md5:	89526cac818f216eb93407b47d05f971
+URL:		http://www.bigpaul.org/burn/
+BuildRequires:	python-devel
+BuildRequires:	python-setuptools
+BuildRequires:	rpm-pythonprov
+BuildRequires:	rpmbuild(macros) >= 1.219
+Requires:	cdrdao
+Requires:	cdrecord
+Requires:	mkisofs
+Requires:	python-eyeD3
+Requires:	python-modules
+Requires:	python-pyvorbis
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%description
+Burn is a simple program/script written in Python. It's aim is to make
+it simple and quick to burn CDs or DVDs.
+
+%description -l pl.UTF-8
+Burn jest prostym skryptem napisanym w języku Python. Jego zadaniem
+jest umożliwienie wypalenia płyt CD/DVD w możliwie prosty i szybki
+sposób.
+
+%prep
+%setup -q -n %{module}-%{version}
+
+%build
+export CFLAGS="%{rpmcflags}"
+%{__python} setup.py build
+
+%install
+rm -rf $RPM_BUILD_ROOT
+%{__python} setup.py install \
+	--optimize=2 \
+	--root=$RPM_BUILD_ROOT
+
+install -d $RPM_BUILD_ROOT%{_mandir}/man1
+cp doc/{burn.1,burn-configure.1} $RPM_BUILD_ROOT%{_mandir}/man1
+
+%py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
+%py_comp $RPM_BUILD_ROOT%{py_sitedir}
+%py_postclean
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(644,root,root,755)
+%doc doc/AUTHORS doc/BUGS changelog doc/KNOWN_BUGS README doc/TODO doc/WISHLIST burn.conf-dist burn.conf
+%attr(755,root,root) %{_bindir}/burn
+%attr(755,root,root) %{_bindir}/burn-configure
+%dir %{py_sitescriptdir}/burnlib
+%{py_sitescriptdir}/burnlib/*.py[co]
+%if "%{py_ver}" > "2.4"
+%{py_sitescriptdir}/%{module}-%{version}-*.egg-info
+%endif
+%{_mandir}/man1/burn.1*
+%{_mandir}/man1/burn-configure.1*
