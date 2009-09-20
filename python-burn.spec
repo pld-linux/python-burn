@@ -18,7 +18,9 @@ Requires:	cdrdao
 Requires:	cdrecord
 Requires:	mkisofs
 Requires:	python-eyeD3
+Requires:	python-mad
 Requires:	python-modules
+Requires:	python-pyao
 Requires:	python-pyvorbis
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
