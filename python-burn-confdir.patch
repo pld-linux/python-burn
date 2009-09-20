@@ -1,0 +1,12 @@
+diff -burNp burn-0.4.4/burnlib/burn.py burn-0.4.4-dud/burnlib/burn.py
+--- burn-0.4.4/burnlib/burn.py	2009-07-03 15:16:53.000000000 +0200
++++ burn-0.4.4-dud/burnlib/burn.py	2009-09-20 08:42:53.787643490 +0200
+@@ -49,7 +49,7 @@ _ = gettext.gettext
+ config = ConfigParser.ConfigParser()
+ #CONFIGURATION FILE LOCATION **********************************
+ #All of them are used. Not existing files ignored. Later item overrides former.
+-config.read(['/etc/burn.conf', os.path.join(os.environ['HOME'], '.burnrc')])
++config.read(['/etc/burn/burn.conf', os.path.join(os.environ['HOME'], '.burnrc')])
+ 
+ external_decod = 0
+ cdrecord = config.get('executables', 'cdrecord')
