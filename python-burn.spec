@@ -13,7 +13,7 @@ URL:		http://www.bigpaul.org/burn/
 BuildRequires:	python-devel
 BuildRequires:	python-setuptools
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.219
+BuildRequires:	rpmbuild(macros) >= 1.710
 Requires:	cdrdao
 Requires:	cdrecord
 Requires:	mkisofs
