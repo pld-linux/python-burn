@@ -3,7 +3,7 @@ Summary:	simple and quick way to burn CDs or DVDs
 Summary(pl.UTF-8):	prosty skrypt umożliwiający wypalanie CD/DVD
 Name:		python-%{module}
 Version:	0.4.4
-Release:	4
+Release:	5
 License:	GPL v2
 Group:		Development/Languages/Python
 Source0:	http://www.bigpaul.org/burn/download/%{module}-%{version}.tar.gz
