@@ -1,4 +1,4 @@
-%define 	module	burn
+%define		module	burn
 Summary:	simple and quick way to burn CDs or DVDs
 Summary(pl.UTF-8):	prosty skrypt umożliwiający wypalanie CD/DVD
 Name:		python-%{module}
@@ -22,6 +22,7 @@ Requires:	python-mad
 Requires:	python-modules
 Requires:	python-pyao
 Requires:	python-pyvorbis
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
