@@ -36,7 +36,7 @@ sposób.
 
 %prep
 %setup -q -n %{module}-%{version}
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %py_build
